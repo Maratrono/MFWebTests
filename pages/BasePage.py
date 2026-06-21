@@ -20,3 +20,4 @@ class BasePage:
     #Создаем функцию для перехода к сайту
     def get_url(self, url):
         return self.driver.get(url)
+
