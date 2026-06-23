@@ -1,3 +1,4 @@
+import allure
 
 from pages.BasePage import BasePage
 #Импортируется класс By который позволяет искать локаторы(элементы по id, xpath и т.д.)
@@ -52,14 +53,20 @@ class LoginPageHelper(BasePage):
 # Страницы не соединяем, то есть не пишем на две страницы одновременно тесты а разделяем даже если одна страница открывается только после клика какого либо поля на какой либо странице
 # Страницы не смешиваем
 
+
+    @allure.step("Нажимаем кнопку 'Войти'")
     def click_login(self):
     #создаем функцию инициирующую клик по полю войти без заполнения логина или пароля
+        self.attach_screenshot() #скриншот перед кликом войти
         self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
         # ищем кнопку login_tab(кнопка войти) и кликаем
 
+    @allure.step("Вывод текста ошибки при клике 'Войти'")
     def get_error_text(self):
+        self.attach_screenshot() #скриншот после вывода ошибки
         return self.find_element(LoginPageLocators.ERROR_TEXT).text
         #ищем элемент по локатору, который выдает ошибку Введите логин и возвращает текст ошибки этого локатора
 
+    @allure.step("Ввод текста в поле 'Логин'")
     def send_keys_login(self, text_for_send):
         self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(text_for_send)
