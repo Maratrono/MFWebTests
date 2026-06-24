@@ -20,6 +20,8 @@ class LoginPageLocators(BasePage):
     REGISTRATION_BUTTON_BY_YANDEX = (By.XPATH, '//*[@class="i ic social-icon __s __yandex"]')
     QR_LOGIN_TAB = (By.XPATH, '//*[@data-l="t,qr_tab"]')
     ERROR_TEXT = (By.XPATH, "//span[starts-with(text(), 'Введите')]")
+    RECOVERY_BUTTON = (By.XPATH, "//a[contains(@href, 'anonymRecoveryStart')]")
+    CANCEL_BUTTON = (By.XPATH, "//span[text() = 'Отмена']")
 
 class LoginPageHelper(BasePage):
 #новый класс с наследованием BasePage
@@ -33,6 +35,8 @@ class LoginPageHelper(BasePage):
 
     def check_page(self):
     #создаем функцию проверки страницы,передаем self чтобы он мог узнать все параметры, функции своего класса и родительского класса
+        with allure.step("Проверяем корректность страницы загрузки"):
+            self.attach_screenshot()
         self.find_element(LoginPageLocators.LOGIN_FIELD)
         #как раз используем find element это и есть функция родительского класса BasePage
         # передаем ему LoginPageLocators, это новый класс, тоже унаследованный от BasePage, здесь указаны локаторы
@@ -47,6 +51,7 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.REGISTRATION_BUTTON_BY_MAIL)
         self.find_element(LoginPageLocators.REGISTRATION_BUTTON_BY_YANDEX)
         self.find_element(LoginPageLocators.QR_LOGIN_TAB)
+
 
 #Мы написали Pattern page object - когда каждая страница это отдельный объект, под нее заводится класс, описываются все элементы которые есть на этой странице
 # Описываются все действия на этой странице, которую можно делать на этой странице, клик например
@@ -70,3 +75,22 @@ class LoginPageHelper(BasePage):
     @allure.step("Ввод текста в поле 'Логин'")
     def send_keys_login(self, text_for_send):
         self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(text_for_send)
+
+
+    @allure.step("Заполняем поле логин")
+    def type_login(self, text_for_login):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(text_for_login)
+        self.attach_screenshot()
+        #здесь в отличие от предыдущего send_keys сразу же заполняем поле, то есть находим элемент и вводим текст, а не как выше сделано
+        #Переменная text_for_login (в скобках метода) — это и есть тот текст,
+        # который мы передадим из теста для ввода в поле
+
+    @allure.step("Заполняем поле пароля")
+    def type_password(self, text_for_password):
+        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys(text_for_password)
+        self.attach_screenshot()
+
+    @allure.step("Кликаем на 'Восстановить'")
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.RECOVERY_BUTTON).click()
