@@ -7,10 +7,10 @@ from selenium.webdriver.common.by import By
 
 
 class RecoveryPageLocators(BasePage):
-    PHONE_BUTTON = (By.XPATH, '//*[@data-l="t,phone"]')
-    MAIL_BUTTON =  (By.XPATH, '//*[@data-l="t,email"]')
-    QR_CODE_BUTTON = (By.XPATH, '//*[@class="qr_code_image"]')
-    SUPPORT_BUTTON = (By.XPATH, '//*[@class="support-link_item-text"]')
+    PHONE_BUTTON = (By.XPATH, '//*[@data-test-id="recovery-phone-btn"]')
+    MAIL_BUTTON =  (By.XPATH, '//*//*[@id="recovery-email-btn"]')
+    QR_CODE_BUTTON = (By.XPATH, '//*[@id="qr-image"]')
+    SUPPORT_BUTTON = (By.XPATH, '//*[@id="support-contact-btn"]')
 
 class RecoveryPageHelper(BasePage):
     def __init__(self,driver):
