@@ -24,10 +24,10 @@ def test_go_to_recovery_page(browser):
     for i in range(3):
         LoginPage.type_password(PASSWORD_TEXT)
         LoginPage.click_login()
-        time.sleep(2)
+
 
     LoginPage.click_recovery()
-    time.sleep(2)
+
     RecoveryPageHelper(browser)
 
 
