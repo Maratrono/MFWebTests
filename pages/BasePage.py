@@ -16,7 +16,7 @@ class BasePage:
         #Драйвер подожди 5 секунд(по умолчанию 5 секунд, можем и больше поставить) пока не будут видны элементы которые мы тебе укажем в переменной locator
         #Сообщение будет выводится если только какой либо locator не отобразится
         # Суть проверки чтобы как раз найти элементы страницы, которые мы указываем и потом проверяем их по своим атрибутам, например на кликабельность, на ввод текста и т.д.
-        return WebDriverWait(self.driver, time).until(expected_conditions.visibility_of_element_located(locator), message= f"Не удалось найти элемент {locator}")
+        return WebDriverWait(self.driver, time).until(expected_conditions.element_to_be_clickable(locator), message= f"Не удалось найти элемент {locator}")
 
     #Создаем функцию для перехода к сайту
     @allure.step("Открываем страницу")
