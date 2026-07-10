@@ -20,6 +20,7 @@ class LoginPageForOkLocators(BasePage):
     REGISTRATION_BUTTON_BY_YANDEX = (By.XPATH, '//*[@class="i ic social-icon __s __yandex"]')
     QR_LOGIN_TAB = (By.XPATH, '//*[@data-l="t,qr_tab"]')
     ERROR_TEXT = (By.XPATH, "//span[starts-with(text(), 'Введите')]")
+    HELP_BUTTON = (By.XPATH, "//li[contains(@class, 'ff_links_li')]/a[@data-l='t,help']")
 
 class LoginPageForOkHelper(BasePage):
 #новый класс с наследованием BasePage
@@ -47,6 +48,7 @@ class LoginPageForOkHelper(BasePage):
         self.find_element(LoginPageForOkLocators.REGISTRATION_BUTTON_BY_MAIL)
         self.find_element(LoginPageForOkLocators.REGISTRATION_BUTTON_BY_YANDEX)
         self.find_element(LoginPageForOkLocators.QR_LOGIN_TAB)
+        self.find_element(LoginPageForOkLocators.HELP_BUTTON)
 
 #Мы написали Pattern page object - когда каждая страница это отдельный объект, под нее заводится класс, описываются все элементы которые есть на этой странице
 # Описываются все действия на этой странице, которую можно делать на этой странице, клик например
@@ -76,3 +78,9 @@ class LoginPageForOkHelper(BasePage):
     def click_registration(self):
         self.find_element(LoginPageForOkLocators.REGISTRATION_BUTTON).click()
         self.attach_screenshot()
+
+
+    @allure.step("Клик по кнопке 'Помощь'")
+    def click_help_button(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageForOkLocators.HELP_BUTTON).click()
