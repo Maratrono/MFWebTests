@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 
 
 class HelpPageLocators(BasePage):
-    #TOOLBAR_BUTTON_OK = (By.XPATH, '//a[@data-l="t,logo"]/div[@class="toolbar_logo_img"]')
+    #TOOLBAR_BUTTON_OK = (By.XPATH, '//img[@aria-label="Логотип" and contains(@class, "light")]')
     TOOLBAR_BUTTON_SEARCH = (By.XPATH, "//button[starts-with(@data-l, 'search')]")
     TOOLBAR_NAVIGATOR = (By.XPATH, "//button[@aria-expanded]/span[starts-with(@class, 'toolbar_nav')]")
     TOOLBAR_LOGIN = (By.XPATH, '//*[@data-l="t,login"]')
