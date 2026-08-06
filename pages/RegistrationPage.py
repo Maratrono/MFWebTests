@@ -12,7 +12,7 @@ class RegistrationPageLocators(BasePage):
     COUNTRY_ITEM = (By.XPATH, "//span[text()='Афганистан']")
     PHONE_BUTTON = (By.XPATH, '//*[@inputmode="tel"]')
     SUBMIT_BUTTON = (By.XPATH, '//*[@type="submit"]')
-    BLANK_BUTTON = (By.XPATH, '//*[@href="https://id.vk.com/promo"]')
+    BLANK_BUTTON = (By.XPATH, '//*[@href="https://id.vk.ru/promo"]')
 
 class RegistrationPageHelper(BasePage):
     def __init__(self,driver):
