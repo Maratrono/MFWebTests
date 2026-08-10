@@ -7,5 +7,5 @@ def browser():
     options.add_argument("--lang = ru")
     driver = webdriver.Remote(command_executor="http://85.198.71.219:8080", options=options)
     yield driver
-    if driver
+    if driver:
         driver.quit()
